@@ -272,23 +272,23 @@ if submit:
 
                          }]) 
  
-     #try:
-     st. write('SUBMITING')
-     conn = st.connection('gsheets', type=GSheetsConnection)
-     exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
-     existing= exist.dropna(how='all')
-     updated = pd.concat([existing, df], ignore_index =True)
-     conn.update(worksheet = 'PREV', data = updated)         
-     st.success('Your data above has been submitted')
-     st.write('RELOADING PAGE')
-     time.sleep(3)
-     st.markdown("""
-     <meta http-equiv="refresh" content="0">
-          """, unsafe_allow_html=True)
+     try:
+          st. write('SUBMITING')
+          conn = st.connection('gsheets', type=GSheetsConnection)
+          exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
+          existing= exist.dropna(how='all')
+          updated = pd.concat([existing, df], ignore_index =True)
+          conn.update(worksheet = 'PREV', data = updated)         
+          st.success('Your data above has been submitted')
+          st.write('RELOADING PAGE')
+          time.sleep(3)
+          st.markdown("""
+          <meta http-equiv="refresh" content="0">
+               """, unsafe_allow_html=True)
 
-     # except:
-     #           st.write("Couldn't submit, poor network") 
-     #           st.write('Click the submit button again')
+     except:
+          st.write("Couldn't submit, poor network") 
+          st.write('Click the submit button again')
 
 
 
