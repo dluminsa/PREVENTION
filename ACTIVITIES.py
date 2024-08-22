@@ -275,10 +275,10 @@ if submit:
      try:
           st. write('SUBMITING')
           conn = st.connection('gsheets', type=GSheetsConnection)
-          exist = conn.read(worksheet= 'DONE', usecols=list(range(11)),ttl=5)
+          exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
           existing= exist.dropna(how='all')
           updated = pd.concat([existing, df], ignore_index =True)
-          conn.update(worksheet = 'DONE', data = updated)         
+          conn.update(worksheet = 'PREV', data = updated)         
           st.success('Your data above has been submitted')
           st.write('RELOADING PAGE')
           time.sleep(3)
