@@ -179,7 +179,7 @@ else:
      pass
 #area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
 
-planned = r'PREVENTION.csv'
+planned = r'PLANNED.csv'
 
 dfa = pd.read_csv(planned)
 
