@@ -9,7 +9,8 @@ from datetime import datetime, date
 st.set_page_config(
      page_title= 'ACTIVITY TRACKER'
 )
-
+st.write('BEING UPDATED, WILL RETURN AFTER THE NEW BUDGETS')
+st.stop()
 
 CLUSTER = {
     "KALANGALA": ["KALANGALA"],
