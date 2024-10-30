@@ -272,24 +272,100 @@ if submit:
                          'WEEK': week
 
                          }]) 
- 
-     try:
-          st. write('SUBMITING')
-          conn = st.connection('gsheets', type=GSheetsConnection)
-          exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
-          existing= exist.dropna(how='all')
-          updated = pd.concat([existing, df], ignore_index =True)
-          conn.update(worksheet = 'PREV', data = updated)         
-          st.success('Your data above has been submitted')
-          st.write('RELOADING PAGE')
-          time.sleep(3)
-          st.markdown("""
-          <meta http-equiv="refresh" content="0">
-               """, unsafe_allow_html=True)
 
-     except:
-          st.write("Couldn't submit, poor network") 
-          st.write('Click the submit button again')
+
+secrets = st.secrets["connections"]["gsheets"]
+formatted = str(formatted)
+start = str(start)
+end = str(end)
+row1 =[ formatted, cluster,district, facility, done, number, start, end, unique, week]
+               
+    # Prepare the credentials dictionary
+credentials_info = {
+        "type": secrets["type"],
+        "project_id": secrets["project_id"],
+        "private_key_id": secrets["private_key_id"],
+        "private_key": secrets["private_key"],
+        "client_email": secrets["client_email"],
+        "client_id": secrets["client_id"],
+        "auth_uri": secrets["auth_uri"],
+        "token_uri": secrets["token_uri"],
+        "auth_provider_x509_cert_url": secrets["auth_provider_x509_cert_url"],
+        "client_x509_cert_url": secrets["client_x509_cert_url"]
+    }
+        
+try:
+    # Define the scopes needed for your application
+    scopes = ["https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive"]
+    
+     
+    credentials = Credentials.from_service_account_info(credentials_info, scopes=scopes)
+        
+        # Authorize and access Google Sheets
+    client = gspread.authorize(credentials)
+        
+        # Open the Google Sheet by URL
+    spreadsheetu = "https://docs.google.com/spreadsheets/d/1DJHYJIw8cKZJEZX9VQO25wuXP8ROzcxY2lqT-EvHnjU/edit?gid=1527303903"     
+    spreadsheet = client.open_by_url(spreadsheetu)
+except Exception as e:
+        # Log the error message
+    st.write(f"CHECK: {e}")
+    st.write(traceback.format_exc())
+    st.write("COULDN'T CONNECT TO GOOGLE SHEET, TRY AGAIN")
+    st.stop()
+if submit:
+        try:
+            sheet1 = spreadsheet.worksheet("PREV")
+            #sheet2 = spreadsheet.worksheet("PMTCT")
+            sheet1.append_row(row1, value_input_option='RAW')
+            #sheet2.append_row(mon, value_input_option='RAW')
+            st.success('Your data above has been submitted')
+            time.sleep(2)
+            st.write('RELOADING PAGE')
+            time.sleep(3)
+            st.markdown("""
+               <meta http-equiv="refresh" content="0">
+                    """, unsafe_allow_html=True)
+        except Exception as e:
+            # Print the error message
+            st.write(f"ERROR: {e}")
+            st.stop()  # Stop the Streamlit app here to let the user manually retry     
+else:
+     pass 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+     # try:
+     #      st. write('SUBMITING')
+     #      conn = st.connection('gsheets', type=GSheetsConnection)
+     #      exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
+     #      existing= exist.dropna(how='all')
+     #      updated = pd.concat([existing, df], ignore_index =True)
+     #      conn.update(worksheet = 'PREV', data = updated)         
+     #      st.success('Your data above has been submitted')
+     #      st.write('RELOADING PAGE')
+     #      time.sleep(3)
+     #      st.markdown("""
+     #      <meta http-equiv="refresh" content="0">
+     #           """, unsafe_allow_html=True)
+
+     # except:
+     #      st.write("Couldn't submit, poor network") 
+     #      st.write('Click the submit button again')
 
 
 
