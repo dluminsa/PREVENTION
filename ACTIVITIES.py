@@ -327,7 +327,7 @@ except Exception as e:
 if submit:
         try:
             sheet1 = spreadsheet.worksheet("PREV")
-            #sheet2 = spreadsheet.worksheet("PMTCT")
+            sheet2 = spreadsheet.worksheet("AMOUNT")
             sheet1.append_row(row1, value_input_option='RAW')
             sheet2.append_row(row2, value_input_option='RAW')
             st.success('Your data above has been submitted')
