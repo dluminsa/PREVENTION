@@ -280,7 +280,6 @@ if submit:
                          'END DATE': end,
                          'ID' : unique,
                          'WEEK': week
-
                          }]) 
 
 
@@ -289,6 +288,7 @@ formatted = str(formatted)
 start = str(start)
 end = str(end)
 row1 =[ formatted, cluster,district, facility, done, number, start, end, unique, week]
+row2 =[ formatted, cluster,district, money]
                
     # Prepare the credentials dictionary
 credentials_info = {
@@ -329,7 +329,7 @@ if submit:
             sheet1 = spreadsheet.worksheet("PREV")
             #sheet2 = spreadsheet.worksheet("PMTCT")
             sheet1.append_row(row1, value_input_option='RAW')
-            #sheet2.append_row(mon, value_input_option='RAW')
+            sheet2.append_row(row2, value_input_option='RAW')
             st.success('Your data above has been submitted')
             time.sleep(2)
             st.write('RELOADING PAGE')
