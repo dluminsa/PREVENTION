@@ -203,15 +203,16 @@ if done:
 #      # statea = state[state['DISTRICT']== district].copy()
     statement = state['STATEMENT'].unique()
     counts = state['COUNT'].unique()
+    statement = statement[0]
 #      # try:
 #      #    statement = statement[0]
 #      # except:
 #      #      st.write('THIS ACTIVITY MAY NOT HAVE BEEN PLANNED FOR THIS DISTRICT')
 #      #      st.write('CONTACT YOUR TEAM LEAD FOR SUPPORT')
 #      #      st.stop()
-#      # counts = counts[0]
-#      # cola, colb = st.columns(2)
-#      num = cola.number_input('**HOW MANY FACILITIES CONDUCTED THIS ACTIVITY?**',value=None, step=1)
+     counts = counts[0]
+     cola, colb = st.columns(2)
+     num = cola.number_input('**HOW MANY FACILITIES CONDUCTED THIS ACTIVITY?**',value=None, step=1)
 
 #      if not num:
 #           st.stop()
