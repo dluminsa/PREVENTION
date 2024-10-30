@@ -308,7 +308,7 @@ district = districts[0]
 df2['DISTRICT'] = np.nan
 df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
 df2['ACTIVITY'] = np.nan
-df2['ACTIVITY'] = df2['ACTIVITY'].fillna(doned)
+df2['ACTIVITY'] = df2['ACTIVITY'].fillna(done)
 df2 = df2[['DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
 
                                                                                  
