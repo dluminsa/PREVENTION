@@ -214,16 +214,16 @@ if done:
     cola, colb = st.columns(2)
     num = cola.number_input('**HOW MANY FACILITIES CONDUCTED THIS ACTIVITY?**',value=None, step=1)
 
-#      if not num:
-#           st.stop()
-#      elif num>10:
-#           st.warning('Maximum can be 10')
-#           st.stop()
-#      elif num == 0:
-#           st.warning("CAN'T BE ZERO")
-#           st.stop()
-#      else:
-#           st.markdown(f'**NOTE: {statement}**')
+     if not num:
+          st.stop()
+     elif num>10:
+          st.warning('Maximum can be 10')
+          st.stop()
+     elif num == 0:
+          st.warning("CAN'T BE ZERO")
+          st.stop()
+     else:
+          st.markdown(f'**NOTE: {statement}**')
 
      
 #      for i in range(num):
