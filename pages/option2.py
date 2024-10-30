@@ -167,198 +167,198 @@ if 'unique_number' not in st.session_state:
 else:
      pass
 
-if district:
-     pass
-else:
-     st.stop()
+# if district:
+#      pass
+# else:
+#      st.stop()
 
-planned = r'PLANNED.csv'
+# planned = r'PLANNED.csv'
 
-dfa = pd.read_csv(planned)
+# dfa = pd.read_csv(planned)
 
-# if not area:
+# # if not area:
+# #      st.stop()
+# # else:
+# #      pass
+
+# facilities = FACILITIES[district]
+
+# today = date.today()
+# activity = dfa[dfa['CLUSTER']== cluster].copy()
+# activities = activity['ACTIVITY'].unique()
+# col1,col2 = st.columns([2,1])
+# if district:
+#       done = col1.selectbox(f'**SELECT THE {area} ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
+#       #doned = done
+# else:
+#      st.stop()
+
+# if not done:
+#      st.stop()
+# elif done:
+#      pass
+# current_time = time.localtime()
+# week = time.strftime("%V", current_time)
+# week = int(week)-39
+# datey = datetime.now().date()
+# formatted = datey.strftime("%d-%m-%Y")
+
+# if done: 
+#      # state = activity[activity['ACTIVITY']==done]
+#      # statea = state[state['DISTRICT']== district].copy()
+#      # statement = statea['STATEMENT'].unique()
+#      # counts = statea['COUNT'].unique()
+#      # try:
+#      #    statement = statement[0]
+#      # except:
+#      #      st.write('THIS ACTIVITY MAY NOT HAVE BEEN PLANNED FOR THIS DISTRICT')
+#      #      st.write('CONTACT YOUR TEAM LEAD FOR SUPPORT')
+#      #      st.stop()
+#      # counts = counts[0]
+#      # cola, colb = st.columns(2)
+#      num = cola.number_input('**HOW MANY FACILITIES CONDUCTED THIS ACTIVITY?**',value=None, step=1)
+
+#      if not num:
+#           st.stop()
+#      elif num>10:
+#           st.warning('Maximum can be 10')
+#           st.stop()
+#      elif num == 0:
+#           st.warning("CAN'T BE ZERO")
+#           st.stop()
+#      else:
+#           st.markdown(f'**NOTE: {statement}**')
+
+     
+#      for i in range(num):
+#           colt,coly,colx = st.columns([1,1,1])
+#           colt.write(f'**FACILITY {i+1}**')
+          
+#           coly,colz = st.columns(2)
+#           facility = coly.selectbox(f"**Name of facility {i+1}:**", facilities, index=None, key=f'y{i}')
+#           if not facility:
+#                st.stop()
+#           else:
+#                pass
+#           colt,coly,colx = st.columns([1,1,1])
+#           number = colt.number_input(label=f'**{counts}**', value=None, max_value=None, min_value=None,step=1, format="%d", key=i)
+#           start = coly.date_input(label='**ACTIVITY START DATE**', value=None, key=f'a{i}')
+#           end = colx.date_input(label='**END DATE**',value=None, key= f'b{i}')
+#           clustery = cluster
+#           clusters.append(clustery)
+#           districty = district
+#           districts.append(districty)
+#           weeky = week
+#           uniquey = st.session_state['unique_number'] 
+#           areay = area
+#           doney = done
+#           formattedy = formatted
+#           weeks.append(weeky)
+#           uniques.append(uniquey)
+#           areas.append(areay)
+#           activit.append(doney)
+#           dates.append(formattedy)
+
+#           if number and start and end:
+#                if start > end:
+#                     st.warning("IMPOSSIBLE, ACTIVITY START DATE CAN'T BE GREATER THAN END DATE")
+#                     st.stop()
+#                elif end>today:
+#                     st.warning("IMPOSSIBLE, CHECK END DATE, IT'S GREATER THAN TODAY")
+#                     st.stop()
+#                else:
+#                     numbers.append(number)
+#                     facilitiesy.append(facility)
+#                     starts.append(start)
+#                     ends.append(end)
+#           else:
+#                st.stop()
+               
+#      if area == 'PMTCT':
+#           money = colt.number_input(label='**HOW MUCH ARE YOU PAYING?**', value=None, max_value=None, min_value=None,step=1, format="%d")
+#      else:
+#           pass
+#      if area == 'PMTCT':
+#           if not money:
+#              st.stop()
+#           elif money <10000:
+#                st.warning('**CHECK WHETHER THE MONEY IS LESS THAN 10,000**')
+
+# if num==1:
+#      districts = [districts[0]]
+#      weeks = [weeks[0]]
+#      uniques = [uniques[0]]
+#      areas = [areas[0]]
+#      activit = [activit[0]]
+#      dates = [dates[0]]
+# elif num>1:
+#      districts = districts[0:num]
+#      weeks = weeks[0:num]
+#      uniques = uniques[0:num]
+#      areas = areas[0:num]
+#      activit = activit[0:num]
+#      dates = dates[0:num]
+
+# df = pd.DataFrame({
+#           'DATE OF SUBMISSION': dates,
+#           'CLUSTER': clusters,
+#           'DISTRICT': districts,
+#           'FACILITY': facilitiesy,
+#           'AREA': areas,
+#           'ACTIVITY': activit,
+#           'DONE': numbers,
+#           'START DATE': starts,
+#           'END DATE': ends,
+#           'ID': uniques,
+#           'WEEK': weeks
+#           })
+# if area =='PMTCT':
+#      df2 = pd.DataFrame([money], columns = ['AMOUNT'])
+#      district = districts[0]
+#      df2['DISTRICT'] = np.nan
+#      df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
+#      df2['ACTIVITY'] = np.nan
+#      df2['ACTIVITY'] = df2['ACTIVITY'].fillna(doned)
+#      df2 = df2[['DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
+# else:
+#      pass
+
+                                         
+                                         
+# dfd = df[df.duplicated(subset='FACILITY')]
+# check = dfd.shape[0]
+
+# if check>0:
+#      dfd['FACILITY'] = dfd['FACILITY'].astype(str)
+#      disa = ', '.join(dfd['FACILITY'].unique())
+#      st.warning(f'**You repeated {disa}**')
+#      st.write("**ADD ALL THEIR TOTALS DONE AND SUBMIT THEM AT ONCE**")
 #      st.stop()
 # else:
 #      pass
 
-facilities = FACILITIES[district]
+# st.write(f"UNIQUE ID: {st.session_state['unique_number']}")
+# col1,col2, col3 = st.columns([1,1,2])
+# col2.write('**SUMMARY**')
 
-today = date.today()
-activity = dfa[dfa['CLUSTER']== cluster].copy()
-activities = activity['ACTIVITY'].unique()
-col1,col2 = st.columns([2,1])
-if district:
-      done = col1.selectbox(f'**SELECT THE {area} ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
-      #doned = done
-else:
-     st.stop()
+# cola,colb = st.columns(2)
+# cola.write(f"**UNIQUE ID: {st.session_state['unique_number']}**")
+# cola.markdown(f'**DISTRICT: {district}**')
+# colb.markdown(f'**FACILITY: {facility}**')
+# colb.markdown(f'**THEMATIC AREA: {area}**')
+# cola,colb,colc = st.columns(3)
+# colb.write(f'**ACTIVITY: {done}**')
+# if area == 'PMTCT':
+#      cola.markdown(f'**AMOUNT: {money}**')
+# else:
+#      pass
 
-if not done:
-     st.stop()
-elif done:
-     pass
-current_time = time.localtime()
-week = time.strftime("%V", current_time)
-week = int(week)-39
-datey = datetime.now().date()
-formatted = datey.strftime("%d-%m-%Y")
+# dfa = df[['FACILITY', 'DONE', 'START DATE', 'END DATE']].copy()
 
-if done: 
-     # state = activity[activity['ACTIVITY']==done]
-     # statea = state[state['DISTRICT']== district].copy()
-     # statement = statea['STATEMENT'].unique()
-     # counts = statea['COUNT'].unique()
-     # try:
-     #    statement = statement[0]
-     # except:
-     #      st.write('THIS ACTIVITY MAY NOT HAVE BEEN PLANNED FOR THIS DISTRICT')
-     #      st.write('CONTACT YOUR TEAM LEAD FOR SUPPORT')
-     #      st.stop()
-     # counts = counts[0]
-     # cola, colb = st.columns(2)
-     num = cola.number_input('**HOW MANY FACILITIES CONDUCTED THIS ACTIVITY?**',value=None, step=1)
-
-     if not num:
-          st.stop()
-     elif num>10:
-          st.warning('Maximum can be 10')
-          st.stop()
-     elif num == 0:
-          st.warning("CAN'T BE ZERO")
-          st.stop()
-     else:
-          st.markdown(f'**NOTE: {statement}**')
-
-     
-     for i in range(num):
-          colt,coly,colx = st.columns([1,1,1])
-          colt.write(f'**FACILITY {i+1}**')
-          
-          coly,colz = st.columns(2)
-          facility = coly.selectbox(f"**Name of facility {i+1}:**", facilities, index=None, key=f'y{i}')
-          if not facility:
-               st.stop()
-          else:
-               pass
-          colt,coly,colx = st.columns([1,1,1])
-          number = colt.number_input(label=f'**{counts}**', value=None, max_value=None, min_value=None,step=1, format="%d", key=i)
-          start = coly.date_input(label='**ACTIVITY START DATE**', value=None, key=f'a{i}')
-          end = colx.date_input(label='**END DATE**',value=None, key= f'b{i}')
-          clustery = cluster
-          clusters.append(clustery)
-          districty = district
-          districts.append(districty)
-          weeky = week
-          uniquey = st.session_state['unique_number'] 
-          areay = area
-          doney = done
-          formattedy = formatted
-          weeks.append(weeky)
-          uniques.append(uniquey)
-          areas.append(areay)
-          activit.append(doney)
-          dates.append(formattedy)
-
-          if number and start and end:
-               if start > end:
-                    st.warning("IMPOSSIBLE, ACTIVITY START DATE CAN'T BE GREATER THAN END DATE")
-                    st.stop()
-               elif end>today:
-                    st.warning("IMPOSSIBLE, CHECK END DATE, IT'S GREATER THAN TODAY")
-                    st.stop()
-               else:
-                    numbers.append(number)
-                    facilitiesy.append(facility)
-                    starts.append(start)
-                    ends.append(end)
-          else:
-               st.stop()
-               
-     if area == 'PMTCT':
-          money = colt.number_input(label='**HOW MUCH ARE YOU PAYING?**', value=None, max_value=None, min_value=None,step=1, format="%d")
-     else:
-          pass
-     if area == 'PMTCT':
-          if not money:
-             st.stop()
-          elif money <10000:
-               st.warning('**CHECK WHETHER THE MONEY IS LESS THAN 10,000**')
-
-if num==1:
-     districts = [districts[0]]
-     weeks = [weeks[0]]
-     uniques = [uniques[0]]
-     areas = [areas[0]]
-     activit = [activit[0]]
-     dates = [dates[0]]
-elif num>1:
-     districts = districts[0:num]
-     weeks = weeks[0:num]
-     uniques = uniques[0:num]
-     areas = areas[0:num]
-     activit = activit[0:num]
-     dates = dates[0:num]
-
-df = pd.DataFrame({
-          'DATE OF SUBMISSION': dates,
-          'CLUSTER': clusters,
-          'DISTRICT': districts,
-          'FACILITY': facilitiesy,
-          'AREA': areas,
-          'ACTIVITY': activit,
-          'DONE': numbers,
-          'START DATE': starts,
-          'END DATE': ends,
-          'ID': uniques,
-          'WEEK': weeks
-          })
-if area =='PMTCT':
-     df2 = pd.DataFrame([money], columns = ['AMOUNT'])
-     district = districts[0]
-     df2['DISTRICT'] = np.nan
-     df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
-     df2['ACTIVITY'] = np.nan
-     df2['ACTIVITY'] = df2['ACTIVITY'].fillna(doned)
-     df2 = df2[['DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
-else:
-     pass
-
-                                         
-                                         
-dfd = df[df.duplicated(subset='FACILITY')]
-check = dfd.shape[0]
-
-if check>0:
-     dfd['FACILITY'] = dfd['FACILITY'].astype(str)
-     disa = ', '.join(dfd['FACILITY'].unique())
-     st.warning(f'**You repeated {disa}**')
-     st.write("**ADD ALL THEIR TOTALS DONE AND SUBMIT THEM AT ONCE**")
-     st.stop()
-else:
-     pass
-
-st.write(f"UNIQUE ID: {st.session_state['unique_number']}")
-col1,col2, col3 = st.columns([1,1,2])
-col2.write('**SUMMARY**')
-
-cola,colb = st.columns(2)
-cola.write(f"**UNIQUE ID: {st.session_state['unique_number']}**")
-cola.markdown(f'**DISTRICT: {district}**')
-colb.markdown(f'**FACILITY: {facility}**')
-colb.markdown(f'**THEMATIC AREA: {area}**')
-cola,colb,colc = st.columns(3)
-colb.write(f'**ACTIVITY: {done}**')
-if area == 'PMTCT':
-     cola.markdown(f'**AMOUNT: {money}**')
-else:
-     pass
-
-dfa = df[['FACILITY', 'DONE', 'START DATE', 'END DATE']].copy()
-
-uniques = df['FACILITY']
-cola,colb = st.columns([3,1])
-cola.write(dfa) 
-submit = colb.button('**SUBMIT**')
+# uniques = df['FACILITY']
+# cola,colb = st.columns([3,1])
+# cola.write(dfa) 
+# submit = colb.button('**SUBMIT**')
 
 
 if submit:
