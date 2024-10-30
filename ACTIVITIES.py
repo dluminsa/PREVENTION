@@ -254,7 +254,7 @@ cola,colb = st.columns(2)
 cola.write(f"**UNIQUE ID: {st.session_state['unique_number']}**")
 cola.markdown(f'**DISTRICT: {district}**')
 cola.markdown(f'**FACILITY: {facility}**')
-#cola.markdown(f'**THEMATIC AREA: {area}**')
+cola.markdown(f'**AMOUNT: {money}**')
 
 
 colb.write(f'**ACTIVITY: {done}**')
