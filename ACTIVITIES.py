@@ -3,6 +3,10 @@ from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 import streamlit as st
 import time
+import gspread
+import traceback
+from google.oauth2.service_account import Credentials
+from oauth2client.service_account import ServiceAccountCredentials
 import datetime as dt
 from datetime import datetime, date
 
@@ -258,7 +262,7 @@ cola,colb = st.columns(2)
 submit = cola.button('SUBMIT')
 current_time = time.localtime()
 week = time.strftime("%V", current_time)
-
+week = int(week)-39
 if submit:
      df = pd.DataFrame([{ 'DATE OF SUBMISSION': formatted,
                          'CLUSTER': cluster,
