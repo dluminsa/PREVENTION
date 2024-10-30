@@ -361,31 +361,31 @@ else:
 # submit = colb.button('**SUBMIT**')
 
 
-if submit:
-     try:
-          st. write('SUBMITING')
-          conn = st.connection('gsheets', type=GSheetsConnection)
-          exist = conn.read(worksheet= 'DONE', usecols=list(range(11)),ttl=5)
-          existing= exist.dropna(how='all')
-          updated = pd.concat([existing, df], ignore_index =True)
-          conn.update(worksheet = 'DONE', data = updated)  
-          if area == 'PMTCT':
-               exist2 = conn.read(worksheet= 'PMTCT', usecols=list(range(11)),ttl=5)
-               existing2= exist2.dropna(how='all')
-               updated = pd.concat([existing2, df2], ignore_index =True)
-               conn.update(worksheet = 'PMTCT', data = updated)
-          else:
-               pass
-          st.success('Your data above has been submitted')
-          st.write('RELOADING PAGE')
-          time.sleep(3)
-          st.markdown("""
-          <meta http-equiv="refresh" content="0">
-               """, unsafe_allow_html=True)
+# if submit:
+#      try:
+#           st. write('SUBMITING')
+#           conn = st.connection('gsheets', type=GSheetsConnection)
+#           exist = conn.read(worksheet= 'DONE', usecols=list(range(11)),ttl=5)
+#           existing= exist.dropna(how='all')
+#           updated = pd.concat([existing, df], ignore_index =True)
+#           conn.update(worksheet = 'DONE', data = updated)  
+#           if area == 'PMTCT':
+#                exist2 = conn.read(worksheet= 'PMTCT', usecols=list(range(11)),ttl=5)
+#                existing2= exist2.dropna(how='all')
+#                updated = pd.concat([existing2, df2], ignore_index =True)
+#                conn.update(worksheet = 'PMTCT', data = updated)
+#           else:
+#                pass
+#           st.success('Your data above has been submitted')
+#           st.write('RELOADING PAGE')
+#           time.sleep(3)
+#           st.markdown("""
+#           <meta http-equiv="refresh" content="0">
+#                """, unsafe_allow_html=True)
 
-     except:
-               st.write("Couldn't submit, poor network") 
-               st.write('Click the submit button again')
+#      except:
+#                st.write("Couldn't submit, poor network") 
+#                st.write('Click the submit button again')
 
 
 
