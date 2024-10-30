@@ -202,7 +202,7 @@ if done:
     state = activity[activity['ACTIVITY']==done]
 #      # statea = state[state['DISTRICT']== district].copy()
     statement = state['STATEMENT'].unique()
-    counts = statea['COUNT'].unique()
+    counts = state['COUNT'].unique()
 #      # try:
 #      #    statement = statement[0]
 #      # except:
