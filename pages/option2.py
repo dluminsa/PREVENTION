@@ -167,21 +167,16 @@ if 'unique_number' not in st.session_state:
 else:
      pass
 
-# if district:
-#      pass
-# else:
-#      st.stop()
+if district:
+     pass
+else:
+     st.stop()
 
-# planned = r'PLANNED.csv'
+planned = r'PLANNED.csv'
 
-# dfa = pd.read_csv(planned)
+dfa = pd.read_csv(planned)
 
-# # if not area:
-# #      st.stop()
-# # else:
-# #      pass
-
-# facilities = FACILITIES[district]
+facilities = FACILITIES[district]
 
 # today = date.today()
 # activity = dfa[dfa['CLUSTER']== cluster].copy()
