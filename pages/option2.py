@@ -255,133 +255,121 @@ if done:
           activit.append(doney)
           dates.append(formattedy)
 
-#           if number and start and end:
-#                if start > end:
-#                     st.warning("IMPOSSIBLE, ACTIVITY START DATE CAN'T BE GREATER THAN END DATE")
-#                     st.stop()
-#                elif end>today:
-#                     st.warning("IMPOSSIBLE, CHECK END DATE, IT'S GREATER THAN TODAY")
-#                     st.stop()
-#                else:
-#                     numbers.append(number)
-#                     facilitiesy.append(facility)
-#                     starts.append(start)
-#                     ends.append(end)
-#           else:
-#                st.stop()
+          if number and start and end:
+               if start > end:
+                    st.warning("IMPOSSIBLE, ACTIVITY START DATE CAN'T BE GREATER THAN END DATE")
+                    st.stop()
+               elif end>today:
+                    st.warning("IMPOSSIBLE, CHECK END DATE, IT'S GREATER THAN TODAY")
+                    st.stop()
+               else:
+                    numbers.append(number)
+                    facilitiesy.append(facility)
+                    starts.append(start)
+                    ends.append(end)
+          else:
+               st.stop()
                
-#      if area == 'PMTCT':
-#           money = colt.number_input(label='**HOW MUCH ARE YOU PAYING?**', value=None, max_value=None, min_value=None,step=1, format="%d")
-#      else:
-#           pass
-#      if area == 'PMTCT':
-#           if not money:
-#              st.stop()
-#           elif money <10000:
-#                st.warning('**CHECK WHETHER THE MONEY IS LESS THAN 10,000**')
+money = colt.number_input(label='**HOW MUCH ARE YOU PAYING?**', value=None, max_value=None, min_value=None,step=1, format="%d")
 
-# if num==1:
-#      districts = [districts[0]]
-#      weeks = [weeks[0]]
-#      uniques = [uniques[0]]
-#      areas = [areas[0]]
-#      activit = [activit[0]]
-#      dates = [dates[0]]
-# elif num>1:
-#      districts = districts[0:num]
-#      weeks = weeks[0:num]
-#      uniques = uniques[0:num]
-#      areas = areas[0:num]
-#      activit = activit[0:num]
-#      dates = dates[0:num]
+if not money:
+        st.stop()
+elif money <10000:
+        st.warning('**CHECK WHETHER THE MONEY IS LESS THAN 10,000**')
+if num==1:
+     districts = [districts[0]]
+     weeks = [weeks[0]]
+     uniques = [uniques[0]]
+     areas = [areas[0]]
+     activit = [activit[0]]
+     dates = [dates[0]]
+elif num>1:
+     districts = districts[0:num]
+     weeks = weeks[0:num]
+     uniques = uniques[0:num]
+     areas = areas[0:num]
+     activit = activit[0:num]
+     dates = dates[0:num]
 
-# df = pd.DataFrame({
-#           'DATE OF SUBMISSION': dates,
-#           'CLUSTER': clusters,
-#           'DISTRICT': districts,
-#           'FACILITY': facilitiesy,
-#           'AREA': areas,
-#           'ACTIVITY': activit,
-#           'DONE': numbers,
-#           'START DATE': starts,
-#           'END DATE': ends,
-#           'ID': uniques,
-#           'WEEK': weeks
-#           })
-# if area =='PMTCT':
-#      df2 = pd.DataFrame([money], columns = ['AMOUNT'])
-#      district = districts[0]
-#      df2['DISTRICT'] = np.nan
-#      df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
-#      df2['ACTIVITY'] = np.nan
-#      df2['ACTIVITY'] = df2['ACTIVITY'].fillna(doned)
-#      df2 = df2[['DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
-# else:
-#      pass
+df = pd.DataFrame({
+          'DATE OF SUBMISSION': dates,
+          'CLUSTER': clusters,
+          'DISTRICT': districts,
+          'FACILITY': facilitiesy,
+          'AREA': areas,
+          'ACTIVITY': activit,
+          'DONE': numbers,
+          'START DATE': starts,
+          'END DATE': ends,
+          'ID': uniques,
+          'WEEK': weeks
+          })
 
-                                         
-                                         
-# dfd = df[df.duplicated(subset='FACILITY')]
-# check = dfd.shape[0]
+df2 = pd.DataFrame([money], columns = ['AMOUNT'])
+district = districts[0]
+df2['DISTRICT'] = np.nan
+df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
+df2['ACTIVITY'] = np.nan
+df2['ACTIVITY'] = df2['ACTIVITY'].fillna(doned)
+df2 = df2[['DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
 
-# if check>0:
-#      dfd['FACILITY'] = dfd['FACILITY'].astype(str)
-#      disa = ', '.join(dfd['FACILITY'].unique())
-#      st.warning(f'**You repeated {disa}**')
-#      st.write("**ADD ALL THEIR TOTALS DONE AND SUBMIT THEM AT ONCE**")
-#      st.stop()
-# else:
-#      pass
+                                                                                 
+dfd = df[df.duplicated(subset='FACILITY')]
+check = dfd.shape[0]
 
-# st.write(f"UNIQUE ID: {st.session_state['unique_number']}")
-# col1,col2, col3 = st.columns([1,1,2])
-# col2.write('**SUMMARY**')
+if check>0:
+     dfd['FACILITY'] = dfd['FACILITY'].astype(str)
+     disa = ', '.join(dfd['FACILITY'].unique())
+     st.warning(f'**You repeated {disa}**')
+     st.write("**ADD ALL THEIR TOTALS DONE AND SUBMIT THEM AT ONCE**")
+     st.stop()
+else:
+     pass
 
-# cola,colb = st.columns(2)
-# cola.write(f"**UNIQUE ID: {st.session_state['unique_number']}**")
-# cola.markdown(f'**DISTRICT: {district}**')
-# colb.markdown(f'**FACILITY: {facility}**')
-# colb.markdown(f'**THEMATIC AREA: {area}**')
-# cola,colb,colc = st.columns(3)
-# colb.write(f'**ACTIVITY: {done}**')
-# if area == 'PMTCT':
-#      cola.markdown(f'**AMOUNT: {money}**')
-# else:
-#      pass
+st.write(f"UNIQUE ID: {st.session_state['unique_number']}")
+col1,col2, col3 = st.columns([1,1,2])
+col2.write('**SUMMARY**')
 
-# dfa = df[['FACILITY', 'DONE', 'START DATE', 'END DATE']].copy()
+cola,colb = st.columns(2)
+cola.write(f"**UNIQUE ID: {st.session_state['unique_number']}**")
+cola.markdown(f'**DISTRICT: {district}**')
+colb.markdown(f'**FACILITY: {facility}**')
+colb.markdown(f'**THEMATIC AREA: {area}**')
+cola,colb,colc = st.columns(3)
+colb.write(f'**ACTIVITY: {done}**')
+cola.markdown(f'**AMOUNT: {money}**')
 
-# uniques = df['FACILITY']
-# cola,colb = st.columns([3,1])
-# cola.write(dfa) 
-# submit = colb.button('**SUBMIT**')
+dfa = df[['FACILITY', 'DONE', 'START DATE', 'END DATE']].copy()
+
+uniques = df['FACILITY']
+cola,colb = st.columns([3,1])
+cola.write(dfa) 
+submit = colb.button('**SUBMIT**')
 
 
-# if submit:
-#      try:
-#           st. write('SUBMITING')
-#           conn = st.connection('gsheets', type=GSheetsConnection)
-#           exist = conn.read(worksheet= 'DONE', usecols=list(range(11)),ttl=5)
-#           existing= exist.dropna(how='all')
-#           updated = pd.concat([existing, df], ignore_index =True)
-#           conn.update(worksheet = 'DONE', data = updated)  
-#           if area == 'PMTCT':
-#                exist2 = conn.read(worksheet= 'PMTCT', usecols=list(range(11)),ttl=5)
-#                existing2= exist2.dropna(how='all')
-#                updated = pd.concat([existing2, df2], ignore_index =True)
-#                conn.update(worksheet = 'PMTCT', data = updated)
-#           else:
-#                pass
-#           st.success('Your data above has been submitted')
-#           st.write('RELOADING PAGE')
-#           time.sleep(3)
-#           st.markdown("""
-#           <meta http-equiv="refresh" content="0">
-#                """, unsafe_allow_html=True)
+if submit:
+     try:
+          st. write('SUBMITING')
+          conn = st.connection('gsheets', type=GSheetsConnection)
+          exist = conn.read(worksheet= 'PREV', usecols=list(range(5)),ttl=5)
+          existing= exist.dropna(how='all')
+          updated = pd.concat([existing, df], ignore_index =True)
+          conn.update(worksheet = 'PREV', data = updated)  
+          
+          exist2 = conn.read(worksheet= 'AMOUNT', usecols=list(range(5)),ttl=5)
+          existing2= exist2.dropna(how='all')
+          updated = pd.concat([existing2, df2], ignore_index =True)
+          conn.update(worksheet = 'AMOUNT', data = updated)
+          st.success('Your data above has been submitted')
+          st.write('RELOADING PAGE')
+          time.sleep(3)
+          st.markdown("""
+          <meta http-equiv="refresh" content="0">
+               """, unsafe_allow_html=True)
 
-#      except:
-#                st.write("Couldn't submit, poor network") 
-#                st.write('Click the submit button again')
+     except:
+               st.write("Couldn't submit, poor network") 
+               st.write('Click the submit button again')
 
 
 
