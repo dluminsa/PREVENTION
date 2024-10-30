@@ -198,11 +198,11 @@ week = int(week)-39
 datey = datetime.now().date()
 formatted = datey.strftime("%d-%m-%Y")
 
-# if done: 
-#      # state = activity[activity['ACTIVITY']==done]
+if done: 
+    state = activity[activity['ACTIVITY']==done]
 #      # statea = state[state['DISTRICT']== district].copy()
-#      # statement = statea['STATEMENT'].unique()
-#      # counts = statea['COUNT'].unique()
+    statement = state['STATEMENT'].unique()
+    counts = statea['COUNT'].unique()
 #      # try:
 #      #    statement = statement[0]
 #      # except:
