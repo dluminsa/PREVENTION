@@ -246,12 +246,11 @@ if done:
           districts.append(districty)
           weeky = week
           uniquey = st.session_state['unique_number'] 
-          areay = area
+          # areay = area
           doney = done
           formattedy = formatted
           weeks.append(weeky)
           uniques.append(uniquey)
-          areas.append(areay)
           activit.append(doney)
           dates.append(formattedy)
 
@@ -280,14 +279,14 @@ if num==1:
      districts = [districts[0]]
      weeks = [weeks[0]]
      uniques = [uniques[0]]
-     areas = [areas[0]]
+     #areas = [areas[0]]
      activit = [activit[0]]
      dates = [dates[0]]
 elif num>1:
      districts = districts[0:num]
      weeks = weeks[0:num]
      uniques = uniques[0:num]
-     areas = areas[0:num]
+     #areas = areas[0:num]
      activit = activit[0:num]
      dates = dates[0:num]
 
@@ -296,7 +295,6 @@ df = pd.DataFrame({
           'CLUSTER': clusters,
           'DISTRICT': districts,
           'FACILITY': facilitiesy,
-          'AREA': areas,
           'ACTIVITY': activit,
           'DONE': numbers,
           'START DATE': starts,
@@ -334,7 +332,6 @@ cola,colb = st.columns(2)
 cola.write(f"**UNIQUE ID: {st.session_state['unique_number']}**")
 cola.markdown(f'**DISTRICT: {district}**')
 colb.markdown(f'**FACILITY: {facility}**')
-colb.markdown(f'**THEMATIC AREA: {area}**')
 cola,colb,colc = st.columns(3)
 colb.write(f'**ACTIVITY: {done}**')
 cola.markdown(f'**AMOUNT: {money}**')
