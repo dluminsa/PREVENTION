@@ -187,7 +187,7 @@ today = date.today()
 activity = dfa[dfa['CLUSTER']== cluster].copy()
 activities = activity['ACTIVITY'].unique()
 col1,col2 = st.columns([2,1])
-if area:
+if district:
       done = col1.selectbox(f'**SELECT THE {area} ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
       #doned = done
 else:
