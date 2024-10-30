@@ -214,46 +214,46 @@ if done:
     cola, colb = st.columns(2)
     num = cola.number_input('**HOW MANY FACILITIES CONDUCTED THIS ACTIVITY?**',value=None, step=1)
 
-     if not num:
+    if not num:
           st.stop()
-     elif num>10:
+    elif num>10:
           st.warning('Maximum can be 10')
           st.stop()
-     elif num == 0:
+    elif num == 0:
           st.warning("CAN'T BE ZERO")
           st.stop()
-     else:
+    else:
           st.markdown(f'**NOTE: {statement}**')
 
      
-#      for i in range(num):
-#           colt,coly,colx = st.columns([1,1,1])
-#           colt.write(f'**FACILITY {i+1}**')
+    for i in range(num):
+          colt,coly,colx = st.columns([1,1,1])
+          colt.write(f'**FACILITY {i+1}**')
           
-#           coly,colz = st.columns(2)
-#           facility = coly.selectbox(f"**Name of facility {i+1}:**", facilities, index=None, key=f'y{i}')
-#           if not facility:
-#                st.stop()
-#           else:
-#                pass
-#           colt,coly,colx = st.columns([1,1,1])
-#           number = colt.number_input(label=f'**{counts}**', value=None, max_value=None, min_value=None,step=1, format="%d", key=i)
-#           start = coly.date_input(label='**ACTIVITY START DATE**', value=None, key=f'a{i}')
-#           end = colx.date_input(label='**END DATE**',value=None, key= f'b{i}')
-#           clustery = cluster
-#           clusters.append(clustery)
-#           districty = district
-#           districts.append(districty)
-#           weeky = week
-#           uniquey = st.session_state['unique_number'] 
-#           areay = area
-#           doney = done
-#           formattedy = formatted
-#           weeks.append(weeky)
-#           uniques.append(uniquey)
-#           areas.append(areay)
-#           activit.append(doney)
-#           dates.append(formattedy)
+          coly,colz = st.columns(2)
+          facility = coly.selectbox(f"**Name of facility {i+1}:**", facilities, index=None, key=f'y{i}')
+          if not facility:
+               st.stop()
+          else:
+               pass
+          colt,coly,colx = st.columns([1,1,1])
+          number = colt.number_input(label=f'**{counts}**', value=None, max_value=None, min_value=None,step=1, format="%d", key=i)
+          start = coly.date_input(label='**ACTIVITY START DATE**', value=None, key=f'a{i}')
+          end = colx.date_input(label='**END DATE**',value=None, key= f'b{i}')
+          clustery = cluster
+          clusters.append(clustery)
+          districty = district
+          districts.append(districty)
+          weeky = week
+          uniquey = st.session_state['unique_number'] 
+          areay = area
+          doney = done
+          formattedy = formatted
+          weeks.append(weeky)
+          uniques.append(uniquey)
+          areas.append(areay)
+          activit.append(doney)
+          dates.append(formattedy)
 
 #           if number and start and end:
 #                if start > end:
