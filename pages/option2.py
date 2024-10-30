@@ -178,15 +178,15 @@ dfa = pd.read_csv(planned)
 
 facilities = FACILITIES[district]
 
-# today = date.today()
-# activity = dfa[dfa['CLUSTER']== cluster].copy()
-# activities = activity['ACTIVITY'].unique()
-# col1,col2 = st.columns([2,1])
-# if district:
-#       done = col1.selectbox(f'**SELECT THE {area} ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
+today = date.today()
+activity = dfa[dfa['CLUSTER']== cluster].copy()
+activities = activity['ACTIVITY'].unique()
+col1,col2 = st.columns([2,1])
+if district:
+       done = col1.selectbox('**SELECT THE ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
 #       #doned = done
-# else:
-#      st.stop()
+else:
+      st.stop()
 
 # if not done:
 #      st.stop()
