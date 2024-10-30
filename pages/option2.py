@@ -188,15 +188,15 @@ if district:
 else:
       st.stop()
 
-# if not done:
-#      st.stop()
-# elif done:
-#      pass
-# current_time = time.localtime()
-# week = time.strftime("%V", current_time)
-# week = int(week)-39
-# datey = datetime.now().date()
-# formatted = datey.strftime("%d-%m-%Y")
+if not done:
+     st.stop()
+elif done:
+     pass
+current_time = time.localtime()
+week = time.strftime("%V", current_time)
+week = int(week)-39
+datey = datetime.now().date()
+formatted = datey.strftime("%d-%m-%Y")
 
 # if done: 
 #      # state = activity[activity['ACTIVITY']==done]
