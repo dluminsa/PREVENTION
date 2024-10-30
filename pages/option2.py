@@ -348,12 +348,12 @@ if submit:
      try:
           st. write('SUBMITING')
           conn = st.connection('gsheets', type=GSheetsConnection)
-          exist = conn.read(worksheet= 'PREV', usecols=list(range(5)),ttl=5)
+          exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
           existing= exist.dropna(how='all')
           updated = pd.concat([existing, df], ignore_index =True)
           conn.update(worksheet = 'PREV', data = updated)  
           
-          exist2 = conn.read(worksheet= 'AMOUNT', usecols=list(range(5)),ttl=5)
+          exist2 = conn.read(worksheet= 'AMOUNT', usecols=list(range(11)),ttl=5)
           existing2= exist2.dropna(how='all')
           updated = pd.concat([existing2, df2], ignore_index =True)
           conn.update(worksheet = 'AMOUNT', data = updated)
