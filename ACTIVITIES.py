@@ -288,7 +288,7 @@ formatted = str(formatted)
 start = str(start)
 end = str(end)
 row1 =[ formatted, cluster,district, facility, done, number, start, end, unique, week]
-row2 =[ formatted, cluster,district, money]
+row2 =[ formatted, cluster, money]
                
     # Prepare the credentials dictionary
 credentials_info = {
