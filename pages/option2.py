@@ -142,7 +142,7 @@ st.markdown('***ALL ENTRIES ARE REQUIRED**')
 done = ''
 district = ''
 
-theme = ['CARE', 'TB', 'PMTCT', 'CQI']
+#theme = ['CARE', 'TB', 'PMTCT', 'CQI']
 # Radio button to select a district
 
 cluster = st.radio("**Choose a cluster:**", list(CLUSTER.keys()),horizontal=True, index=None)
@@ -168,7 +168,7 @@ else:
      pass
 
 if district:
-     area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
+     pass
 else:
      st.stop()
 
@@ -176,20 +176,20 @@ planned = r'PLANNED.csv'
 
 dfa = pd.read_csv(planned)
 
-if not area:
-     st.stop()
-else:
-     pass
+# if not area:
+#      st.stop()
+# else:
+#      pass
 
 facilities = FACILITIES[district]
 
 today = date.today()
-activity = dfa[dfa['AREA']== area].copy()
+activity = dfa[dfa['CLUSTER']== cluster].copy()
 activities = activity['ACTIVITY'].unique()
 col1,col2 = st.columns([2,1])
 if area:
       done = col1.selectbox(f'**SELECT THE {area} ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
-      doned = done
+      #doned = done
 else:
      st.stop()
 
@@ -199,22 +199,23 @@ elif done:
      pass
 current_time = time.localtime()
 week = time.strftime("%V", current_time)
+week = int(week)-39
 datey = datetime.now().date()
 formatted = datey.strftime("%d-%m-%Y")
 
 if done: 
-     state = activity[activity['ACTIVITY']==done]
-     statea = state[state['DISTRICT']== district].copy()
-     statement = statea['STATEMENT'].unique()
-     counts = statea['COUNT'].unique()
-     try:
-        statement = statement[0]
-     except:
-          st.write('THIS ACTIVITY MAY NOT HAVE BEEN PLANNED FOR THIS DISTRICT')
-          st.write('CONTACT YOUR TEAM LEAD FOR SUPPORT')
-          st.stop()
-     counts = counts[0]
-     cola, colb = st.columns(2)
+     # state = activity[activity['ACTIVITY']==done]
+     # statea = state[state['DISTRICT']== district].copy()
+     # statement = statea['STATEMENT'].unique()
+     # counts = statea['COUNT'].unique()
+     # try:
+     #    statement = statement[0]
+     # except:
+     #      st.write('THIS ACTIVITY MAY NOT HAVE BEEN PLANNED FOR THIS DISTRICT')
+     #      st.write('CONTACT YOUR TEAM LEAD FOR SUPPORT')
+     #      st.stop()
+     # counts = counts[0]
+     # cola, colb = st.columns(2)
      num = cola.number_input('**HOW MANY FACILITIES CONDUCTED THIS ACTIVITY?**',value=None, step=1)
 
      if not num:
