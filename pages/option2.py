@@ -304,7 +304,7 @@ df = pd.DataFrame({
           })
 forms = str(list(dates)[0])
 df2 = pd.DataFrame([money], columns = ['AMOUNT'])
-st.write(district)
+#st.write(district)
 #district = districts[0]
 df2['CLUSTER'] = np.nan
 df2['CLUSTER'] = df2['CLUSTER'].fillna(cluster)
