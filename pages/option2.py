@@ -305,8 +305,8 @@ df = pd.DataFrame({
 forms = str(list(dates)[0])
 df2 = pd.DataFrame([money], columns = ['AMOUNT'])
 district = districts[0]
-df2['DISTRICT'] = np.nan
-df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
+df2['CLUSTER'] = np.nan
+df2['CLUSTER'] = df2['CLUSTER'].fillna(cluster)
 df2['ACTIVITY'] = np.nan
 df2['ACTIVITY'] = df2['ACTIVITY'].fillna(done)
 df2['DATE'] = np.nan
