@@ -302,7 +302,7 @@ df = pd.DataFrame({
           'ID': uniques,
           'WEEK': weeks
           })
-st.write(dates)
+forms = str(list(dates)[0])
 df2 = pd.DataFrame([money], columns = ['AMOUNT'])
 district = districts[0]
 df2['DISTRICT'] = np.nan
@@ -310,7 +310,7 @@ df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
 df2['ACTIVITY'] = np.nan
 df2['ACTIVITY'] = df2['ACTIVITY'].fillna(done)
 df2['DATE'] = np.nan
-df2['DATE'] = df2['DATE'].fillna(dates)
+df2['DATE'] = df2['DATE'].fillna(forms)
 df2 = df2[['DATE','DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
 
                                                                                  
