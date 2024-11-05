@@ -76,7 +76,6 @@ FACILITIES ={
                                         }
 
 
-
 ALL =[ "BIGASA HC III","BUTENGA HC IV","KAGOGGO HC II","KIGANGAZZI HC II",
                               "KISOJJO HC II","KITANDA HC III","MIRAMBI HC III","ST. MARY'S MATERNITY HOME",
                 "BULO HC III","BUTAAKA HC III","EPI-CENTRESENGE HC III","GOMBE GENERAL HOSPITAL", 
@@ -193,8 +192,9 @@ dfa = pd.read_csv(planned)
 # else:
 #      pass
 
-#activity = dfa[dfa['AREA']== area].copy()
-activities = dfa['ACTIVITY'].unique()
+activity = dfa[dfa['CLUSTER']== area].copy()
+activities = activity['ACTIVITY'].unique()
+# activities = dfa['ACTIVITY'].unique()
 col1,col2 = st.columns([2,1])
 #if area:
 done = col1.selectbox(f'**SELECT THE ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
