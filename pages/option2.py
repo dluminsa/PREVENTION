@@ -309,7 +309,9 @@ df2['DISTRICT'] = np.nan
 df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
 df2['ACTIVITY'] = np.nan
 df2['ACTIVITY'] = df2['ACTIVITY'].fillna(done)
-df2 = df2[['DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
+df2['DATE'] = np.nan
+df2['DATE'] = df2['DATE'].fillna(formated)
+df2 = df2[['DATE','DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
 
                                                                                  
 dfd = df[df.duplicated(subset='FACILITY')]
