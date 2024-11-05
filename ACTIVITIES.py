@@ -192,7 +192,7 @@ dfa = pd.read_csv(planned)
 # else:
 #      pass
 
-activity = dfa[dfa['CLUSTER']== area].copy()
+activity = dfa[dfa['CLUSTER']== cluster].copy()
 activities = activity['ACTIVITY'].unique()
 # activities = dfa['ACTIVITY'].unique()
 col1,col2 = st.columns([2,1])
