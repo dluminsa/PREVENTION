@@ -310,7 +310,7 @@ df2['DISTRICT'] = df2['DISTRICT'].fillna(district)
 df2['ACTIVITY'] = np.nan
 df2['ACTIVITY'] = df2['ACTIVITY'].fillna(done)
 df2['DATE'] = np.nan
-df2['DATE'] = df2['DATE'].fillna(formated)
+df2['DATE'] = df2['DATE'].fillna(dates)
 df2 = df2[['DATE','DISTRICT', 'ACTIVITY', 'AMOUNT']].copy()
 
                                                                                  
