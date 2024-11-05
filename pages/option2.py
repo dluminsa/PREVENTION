@@ -302,7 +302,7 @@ df = pd.DataFrame({
           'ID': uniques,
           'WEEK': weeks
           })
-
+st.write(dates)
 df2 = pd.DataFrame([money], columns = ['AMOUNT'])
 district = districts[0]
 df2['DISTRICT'] = np.nan
