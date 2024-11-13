@@ -304,6 +304,9 @@ df = pd.DataFrame({
           })
 forms = str(list(dates)[0])
 df2 = pd.DataFrame([money], columns = ['AMOUNT'])
+unik = st.session_state['unique_number'] 
+df2['ID'] = np.nan
+df2['ID'] = df2['ID'].fillna(unik)
 #st.write(district)
 #district = districts[0]
 df2['CLUSTER'] = np.nan
