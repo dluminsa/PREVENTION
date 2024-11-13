@@ -315,7 +315,7 @@ df2['ACTIVITY'] = np.nan
 df2['ACTIVITY'] = df2['ACTIVITY'].fillna(done)
 df2['DATE'] = np.nan
 df2['DATE'] = df2['DATE'].fillna(forms)
-df2 = df2[['DATE','CLUSTER', 'ACTIVITY', 'AMOUNT']].copy()
+df2 = df2[['DATE','CLUSTER', 'ACTIVITY', 'AMOUNT', 'ID']].copy()
 
                                                                                  
 dfd = df[df.duplicated(subset='FACILITY')]
