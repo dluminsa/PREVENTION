@@ -4,7 +4,6 @@ from streamlit_gsheets import GSheetsConnection
 import streamlit as st
 import numpy as np
 import time
-fff
 import datetime as dt
 from datetime import datetime, date
 
