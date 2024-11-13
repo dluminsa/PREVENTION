@@ -3,7 +3,6 @@ from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
 import streamlit as st
 import numpy as np
-dddd
 import time
 import datetime as dt
 from datetime import datetime, date
