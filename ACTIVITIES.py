@@ -9,7 +9,7 @@ from google.oauth2.service_account import Credentials
 from oauth2client.service_account import ServiceAccountCredentials
 import datetime as dt
 from datetime import datetime, date
-st.write('**STOP WORK ORDER**')
+#st.write('**STOP WORK ORDER**')
 st.stop()         
 st.set_page_config(
      page_title= 'ACTIVITY TRACKER'
