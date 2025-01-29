@@ -5,12 +5,12 @@ import streamlit as st
 import time
 import gspread
 import traceback
-sssssssssssssssss
 from google.oauth2.service_account import Credentials
 from oauth2client.service_account import ServiceAccountCredentials
 import datetime as dt
 from datetime import datetime, date
-sssssssssssssssss
+st.write('**STOP WORK ORDER**')
+st.stop()         
 st.set_page_config(
      page_title= 'ACTIVITY TRACKER'
 )
