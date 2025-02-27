@@ -6,7 +6,6 @@ import numpy as np
 import time
 import datetime as dt
 from datetime import datetime, date
-ssssssssssssss
 
 st.set_page_config(
      page_title= 'ACTIVITY TRACKER'
