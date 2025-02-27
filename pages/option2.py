@@ -351,7 +351,7 @@ submit = colb.button('**SUBMIT**')
 
 
 if submit:
-     try:
+     # try:
           st. write('SUBMITING')
           conn = st.connection('gsheets', type=GSheetsConnection)
           exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
@@ -370,9 +370,9 @@ if submit:
           <meta http-equiv="refresh" content="0">
                """, unsafe_allow_html=True)
 
-     except:
-               st.write("Couldn't submit, poor network") 
-               st.write('Click the submit button again')
+     # except:
+     #           st.write("Couldn't submit, poor network") 
+     #           st.write('Click the submit button again')
 
 
 
