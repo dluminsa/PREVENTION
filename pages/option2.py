@@ -8,7 +8,7 @@ import datetime as dt
 from datetime import datetime, date
 
 st.set_page_config(
-     page_title= 'ACTIVITY TRACKER'
+     page_title= 'PREVENTION ACTIVITY TRACKER'
 )
 
 # st.write('BEING UPDATED, WILL RETURN AFTER THE NEW BUDGETS')
