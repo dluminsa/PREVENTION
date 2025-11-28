@@ -16,7 +16,7 @@ st.set_page_config(
 # st.stop()
 cola,colb,colc = st.columns([1,2,1])
 cola.write('')
-colb.markdown("<h4><b>ACTIVITIES DASHBOARD</b></h4>", unsafe_allow_html=True)
+colb.markdown("<h4><b>PREVENTION ACTIVITIES DASHBOARD</b></h4>", unsafe_allow_html=True)
 colc.write('')
 current_time = time.localtime()
 k = time.strftime("%V", current_time)
@@ -30,6 +30,7 @@ try:
      conn = st.connection('gsheets', type=GSheetsConnection)     
      dfb = conn.read(worksheet='DONE', usecols=list(range(12)), ttl=5)
      dfb = dfb.dropna(how='all')
+     dfb = dfb[dfb['AREA'] == 'PREVENTION'].copy()
 except:
      st.write(f"**Your network is poor, couldn't connect to the google sheet**")
      st.write(f"**TRY AGAIN WITH BETTER INTERNET**")
