@@ -133,7 +133,7 @@ done = ''
 district = ''
 amount = ''
 mon = ''
-theme = ['CARE', 'TB', 'PMTCT', 'CQI']
+# theme = ['CARE', 'TB', 'PMTCT', 'CQI']
 # Radio button to select a district
 
 # cluster = st.radio("**Choose a cluster:**", list(CLUSTER.keys()),horizontal=True, index=None)
@@ -172,7 +172,8 @@ if not facility:
      st.stop()
 else:
      pass
-area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
+#area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
+area = 'PREVENTION'
 
 planned = r'PLANNED.csv'
 
