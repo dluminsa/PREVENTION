@@ -172,21 +172,24 @@ if not facility:
      st.stop()
 else:
      pass
-# area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
+area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
 
 planned = r'PLANNED.csv'
 
 dfa = pd.read_csv(planned)
 
-# if not area:
-#      st.stop()
-# else:
-#      pass
+if not area:
+     st.stop()
+else:
+     pass
 
-activity = dfa[dfa['AREA']== 'PREVENTION'].copy()
+activity = dfa[dfa['AREA']== area].copy()
 activities = activity['ACTIVITY'].unique()
 col1,col2 = st.columns([2,1])
-
+if area:
+      done = col1.selectbox(f'**SELECT THE {area} ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
+else:
+     st.stop()
 
 if not done:
      st.stop()
