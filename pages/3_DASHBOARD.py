@@ -10,7 +10,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 st.set_page_config(
-     page_title= 'ACTIVITY DASHBOARD'
+     page_title= 'PREVENTION ACTIVITY DASHBOARD'
 )
 # st.write('BEING UPDATED, WILL RETURN AFTER THE NEW BUDGETS')
 # st.stop()
@@ -142,6 +142,7 @@ else:
 
 plan = filtered_dfa['PLANNED'].sum()
 conducted = filtered_dfb['DONE'].sum()
+conducted
 notdone = plan - conducted
 if plan ==0:
      perc =0
