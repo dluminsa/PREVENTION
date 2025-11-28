@@ -26,10 +26,12 @@ t = int(k) - 39
 cola,colb,colc = st.columns([1,2,1])
 cola.write(f'**CALENDAR WEEK IS: {k}**')
 colc.write(f'**SURGE WEEK IS: {t}**')
+
 try:
      conn = st.connection('gsheets', type=GSheetsConnection)     
      dfb = conn.read(worksheet='DONE', usecols=list(range(12)), ttl=5)
      dfb = dfb.dropna(how='all')
+     dfb['AREA'] = dfb['AREA'].astype(str)
      dfb = dfb[dfb['AREA'] == 'PREVENTION'].copy()
 except:
      st.write(f"**Your network is poor, couldn't connect to the google sheet**")
