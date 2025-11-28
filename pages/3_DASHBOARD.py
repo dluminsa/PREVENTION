@@ -142,7 +142,7 @@ filt = filtered_dfa[filtered_dfa['AMOUNT']>0].copy()
 dfplan = filt.copy()
 plana = filt['AMOUNT'].sum()
 conducteda = filtered_dfb['AMOUNT'].sum()
-dfspent = filtered_dfb.copy()
+dfspenta = filtered_dfb.copy()
 notdonea = plana - conducteda
 pers = int((conducteda/plana)*100)
      
