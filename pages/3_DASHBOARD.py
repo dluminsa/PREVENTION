@@ -194,10 +194,10 @@ st.plotly_chart(fig2, use_container_width=True)
 # dists = filtered_dfb['DISTRICT'].unique()
 # facys = filtered_dfb['FACILITY'].unique()
 dfplan['AMOUNT'] = pd.to_numeric(dfplan['AMOUNT'], errors='coerce')
-dfplan = dfplan[dfplan['AMOUNT']>0].copy()
+dfplana = dfplan[dfplan['AMOUNT']>0].copy()
 
 col2.markdown('<h4><b><u style="color: green;">ACTIVITIES DONE</u></b></h4>', unsafe_allow_html=True)
-activities = dfplan['ACTIVITY'].unique()
+activities = dfplana['ACTIVITY'].unique()
      
 for activity in activities:
                st.markdown(f'<h4><b><u style="color: red;">{activity}</u></b></h4>', unsafe_allow_html=True) 
