@@ -1,0 +1,11 @@
+﻿AREA,ACTIVITY,CLUSTER,DISTRICT,PLANNED,STATEMENT,COUNT,AMOUNT
+PREVENTION,APN/Index biological,MASAKA,BUKOMANSIMBI,81,Count each household visited as one,No. of households visited,1215000
+PREVENTION,APN/Index biological,MASAKA,MASAKA CITY,144,Count each household visited as one,No. of households visited,2160000
+PREVENTION,APN/Index biological,MASAKA,SEMBABULE,360,Count each household visited as one,No. of households visited,5400000
+PREVENTION,SNS HOME VISITS,MASAKA,BUKOMANSIMBI,33,Count each household visited as one,No. of households visited,495000
+PREVENTION,SNS HOME VISITS,MASAKA,MASAKA CITY,45,Count each household visited as one,No. of households visited,675000
+PREVENTION,SNS HOME VISITS,MASAKA,SEMBABULE,243,Count each household visited as one,No. of households visited,3645000
+PREVENTION,Targeted outreaches- high risk populations,MASAKA,BUKOMANSIMBI,10,Count each outreach as one,No. of outreaches done,1240000
+PREVENTION,Targeted outreaches- high risk populations,MASAKA,MASAKA CITY,12,Count each outreach as one,No. of outreaches done,1488000
+PREVENTION,Targeted outreaches- high risk populations,MASAKA,SEMBABULE,96,Count each outreach as one,No. of outreaches done,12480000
+PREVENTION,PrEP refill outreaches,MASAKA,SEMBABULE,80,Count each outreach as one,No. of outreaches done,10400000
