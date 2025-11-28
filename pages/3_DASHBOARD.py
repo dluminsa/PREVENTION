@@ -74,7 +74,7 @@ else:
 
  
 #for facility
-activity = st.sidebar.multiselect('Choose an activity', dfa3['ACTIVITY'].unique())
+activity = st.sidebar.multiselect('Choose an activity', dfa2['ACTIVITY'].unique())
 
 #Filter Week, District, Facility
 if not district and not activity:
