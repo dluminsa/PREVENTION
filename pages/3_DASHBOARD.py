@@ -71,65 +71,36 @@ else:
     dfb2 = dfb[dfb['DISTRICT'].isin(district)]
 
 #create for district
-area = st.sidebar.multiselect('Choose a thematic area', dfa2['AREA'].unique())
-if not area:
-    dfa3 = dfa2.copy()
-    dfb3 = dfb2.copy()
-else:
-    dfa3 = dfa2[dfa2['AREA'].isin(area)]
-    dfb3 = dfb2[dfb2['AREA'].isin(area)]
+
  
 #for facility
 activity = st.sidebar.multiselect('Choose an activity', dfa3['ACTIVITY'].unique())
 
 #Filter Week, District, Facility
-if not district and not area and not activity:
+if not district and not activity:
     filtered_dfa = dfa
     filtered_dfb = dfb
-elif not area and not activity:
-    filtered_dfa = dfa[dfa['DISTRICT'].isin(district)].copy()
-    filtered_dfb = dfb[dfb['DISTRICT'].isin(district)].copy()
-elif not district and not activity:
-    filtered_dfa = dfa[dfa['AREA'].isin(area)].copy()
-    filtered_dfb = dfb[dfb['AREA'].isin(area)].copy()
-elif area and activity:
-     #
-    filtered_dfa = dfa3[dfa3['AREA'].isin(area)& dfa3['ACTIVITY'].isin(activity)].copy()
-     #
-    filtered_dfb = dfb3[dfb3['AREA'].isin(area)& dfb3['ACTIVITY'].isin(activity)].copy()
 elif district and activity:
      #
     filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district)& dfa3['ACTIVITY'].isin(activity)].copy()
      #
     filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district)& dfb3['ACTIVITY'].isin(activity)].copy()
-elif district and area:
-     #
-    filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district)& dfa3['AREA'].isin(area)].copy()
-     #
-    filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district)& dfb3['AREA'].isin(area)].copy()
 elif activity:
     filtered_dfa = dfa3[dfa3['ACTIVITY'].isin(activity)].copy()
     filtered_dfb = dfb3[dfb3['ACTIVITY'].isin(activity)].copy()
 else:
-    filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district) & dfa3['AREA'].isin(area)&dfa3['ACTIVITY'].isin(activity)].copy()
-    filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district) & dfb3['AREA'].isin(area)&dfb3['ACTIVITY'].isin(activity)].copy()
+    filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district) & dfa3['ACTIVITY'].isin(activity)].copy()
+    filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district) & dfb3['ACTIVITY'].isin(activity)].copy()
 #################################################################################################
 cols,cold = st.columns(2)
 dist = '.'.join(filtered_dfb['DISTRICT']. unique())
+
 if not district:
     pass
 elif len(dist) == 0:
     cols.write(f'**No data for this district**')
 else:
     cols.write(f'**You are viewing data for: {dist}**')
-
-ar = '.'.join(filtered_dfb['AREA']. unique())
-if len(ar) == 0:
-    cold.write(f'**No data for the thematic area(s) chosen**')
-elif len(ar)>1:
-     pass
-elif len(ar)==1:
-     cold.write(f'**The data set is filtered by: {ar} thematic area(s)**')
 
 act = '.'.join(filtered_dfb['ACTIVITY']. unique())
 
@@ -142,7 +113,7 @@ else:
 
 plan = filtered_dfa['PLANNED'].sum()
 conducted = filtered_dfb['DONE'].sum()
-conducted
+
 notdone = plan - conducted
 if plan ==0:
      perc =0
@@ -222,20 +193,16 @@ fig2.update_layout(xaxis_title='WEEK', yaxis_title='TOTAL DONE',
 st.plotly_chart(fig2, use_container_width=True)
 # dists = filtered_dfb['DISTRICT'].unique()
 # facys = filtered_dfb['FACILITY'].unique()
-# areas = filtered_dfb['AREA'].unique()
 dfplan['AMOUNT'] = pd.to_numeric(dfplan['AMOUNT'], errors='coerce')
 dfplan = dfplan[dfplan['AMOUNT']>0].copy()
 
 areas = dfplan['AREA'].unique()
 
-for area in areas:
-     col1,col2, col3 = st.columns(3)
-     col2.markdown(f'<h4><b><u style="color: green;">{area}</u></b></h4>', unsafe_allow_html=True)
-     dfplana = dfplan[dfplan['AREA']== area].copy()
-     dfspenta = dfspent[dfspent['AREA']== area].copy()
-     activities = dfplana['ACTIVITY'].unique()
+
+col2.markdown('<h4><b><u style="color: green;">ACTIVITIES DONE</u></b></h4>', unsafe_allow_html=True)
+activities = dfplana['ACTIVITY'].unique()
      
-     for activity in activities:
+for activity in activities:
                st.markdown(f'<h4><b><u style="color: red;">{activity}</u></b></h4>', unsafe_allow_html=True) 
                dfplanb = dfplana[dfplana['ACTIVITY']== activity].copy()
                dfspentb = dfspenta[dfspenta['ACTIVITY']== activity].copy()
@@ -270,51 +237,7 @@ for area in areas:
                     col2.markdown(f'{planc:,.0f}')
                     col3.markdown(f'{spentc:,.0f}')
                     col4.markdown(f'{balc:,.0f}')
-              
-                    
-
-# chec = len(dists)
-
-# for ary in areas:
-#      allya = filtered_dfb[filtered_dfb['AREA']==ary] 
-#      allyf = filtered_dfa[filtered_dfa['AREA']==ary]  
-#      if chec>1:
-#           st.divider()
-#           st.markdown(f'<h4><b><u style="color: green;">DISTRICT PERFORMANCE IN {ary}</u></b></h4>', unsafe_allow_html=True)
-#          # st.write(f'**DISTRICT PERFORMANCE IN {ary}**')
-#           cola, colb, colc, cold = st.columns([2,1,1,1])
-#           cola.write('**DISTRICT**')
-#           colb.write('**PLANNED**')
-#           colc.write('**DONE**')
-#           cold.write('**BALANCE**')
-#           for district in dists:
-#                ally = allya[allya['DISTRICT']==district]
-#                allyp = allyf[allyf['DISTRICT']==district]
-#                plan = allyp['PLANNED'].sum()
-#                conducted = ally['DONE'].sum()
-#                notdone = plan - conducted
-#                cola.write(f'**{district}**')
-#                colb.write(f'**{plan}**')
-#                colc.write(f'**{conducted}**')
-#                cold.write(f'**{notdone}**')
-#      elif chec==1:
-#           st.divider() 
-#           disy = ','.join(district)
-#           st.markdown(f'<h5><b><u style="color: green;">FACILITY PERFORMANCE IN {ary} ACTIVITIES IN {disy}</u></b></h5>', unsafe_allow_html=True)
-#           #st.write(f'**FACILITY PERFORMANCE IN {ary} IN {district}**')
-#           st.divider()
-#           cola, colb, colc = st.columns([2,1,1])
-#           cola.write('**FACILITY**')
-#           colc.write('**DONE**')
-#           for fact in facys:
-#                dists = allya['DISTRICT'].unique()
-#                allyg = allya[allya['DISTRICT'].isin(dists)]
-#                ally = allyg[allyg['FACILITY']==fact]
-#                conducted = ally['DONE'].sum()
-#                cola.write(f'**{fact}**')
-#                colc.write(f'**{conducted}**')
-#      else:
-#          pass                 
+                            
                           
 
 filtered_dfc= filtered_dfb[['CLUSTER','DISTRICT','FACILITY' ,'AREA','ACTIVITY', 'DONE', 'WEEK', 'AMOUNT','ID','DATE OF SUBMISSION']]
