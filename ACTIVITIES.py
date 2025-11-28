@@ -1,29 +1,26 @@
 import pandas as pd 
 from datetime import datetime
 from streamlit_gsheets import GSheetsConnection
+import traceback
 import streamlit as st
 import time
+import numpy as np
+#sdd
 import gspread
-import traceback
-from google.oauth2.service_account import Credentials
-from oauth2client.service_account import ServiceAccountCredentials
 import datetime as dt
 from datetime import datetime, date
-#st.write('**STOP WORK ORDER**')
-# st.stop()         
+from google.oauth2.service_account import Credentials
+from oauth2client.service_account import ServiceAccountCredentials
+
 st.set_page_config(
-     page_title= 'PREVENTION ACTIVITY TRACKER'
+     page_title= 'ACTIVITY TRACKER'
 )
-# st.write('BEING UPDATED, WILL RETURN AFTER THE NEW BUDGETS')
+# st.write('BEING UPDATED')
 # st.stop()
 
+
 CLUSTER = {
-    "KALANGALA": ["KALANGALA"],
-    "KYOTERA": ["KYOTERA", "RAKAI"],
-     "LYANTONDE": ["LYANTONDE", "LWENGO"],
-    "MASAKA": ['BUKOMANSIMBI', "KALUNGU",'MASAKA CITY', 'MASAKA DISTRICT','SEMBABULE'],
-    "MPIGI": ['BUTAMBALA', 'GOMBA', 'MPIGI'],
-    "WAKISO": ['WAKISO']
+    "MASAKA": ['BUKOMANSIMBI','MASAKA CITY', 'SEMBABULE']
 }
 
 FACILITIES ={  
@@ -77,6 +74,7 @@ FACILITIES ={
                                         }
 
 
+
 ALL =[ "BIGASA HC III","BUTENGA HC IV","KAGOGGO HC II","KIGANGAZZI HC II",
                               "KISOJJO HC II","KITANDA HC III","MIRAMBI HC III","ST. MARY'S MATERNITY HOME",
                 "BULO HC III","BUTAAKA HC III","EPI-CENTRESENGE HC III","GOMBE GENERAL HOSPITAL", 
@@ -127,24 +125,19 @@ ALL =[ "BIGASA HC III","BUTENGA HC IV","KAGOGGO HC II","KIGANGAZZI HC II",
 ididistricts = ['BUKOMANSIMBI','BUTAMBALA', 'GOMBA','KALANGALA','KYOTERA', 'LYANTONDE', 'LWENGO', 'MASAKA CITY', 
                 'MASAKA DISTRICT', 'MPIGI','RAKAI', 'SEMBABULE', 'WAKISO']                                                     
 
-# file = r'PLANNED.csv'
-# dis = pd.read_excel(file)
-# dis1 = dis[dis['ORG'] == 'OTHERS'].copy()
-# alldistricts = dis1['DISTRICT'].unique()
-# alldistrictsidi = dis['DISTRICT'].unique()
 
-# Title of the Streamlit app
-
-st.markdown("<h4><b>PREVENTION   ACTIVITIES   TRACKER</b></h4>", unsafe_allow_html=True)
+st.markdown("<h4><b>PLANNED    ACTIVITIES   TRACKER</b></h4>", unsafe_allow_html=True)
 st.markdown('***ALL ENTRIES ARE REQUIRED**')
 #sss
 done = ''
 district = ''
-
-#theme = ['CARE', 'TB', 'PMTCT', 'CQI']
+amount = ''
+mon = ''
+theme = ['CARE', 'TB', 'PMTCT', 'CQI']
 # Radio button to select a district
 
-cluster = st.radio("**Choose a cluster:**", list(CLUSTER.keys()),horizontal=True, index=None)
+# cluster = st.radio("**Choose a cluster:**", list(CLUSTER.keys()),horizontal=True, index=None)
+cluster = 'MASAKA'
 
 # Show the facilities for the selected district and allow selection
 if cluster is not None:
@@ -171,9 +164,6 @@ def generate_unique_number():
 if 'unique_number' not in st.session_state:
     st.session_state['unique_number'] = generate_unique_number()
 
-# Display the unique number
-
-
 #Display the selection
 with colb:
     st.write('**You selected:**')
@@ -182,32 +172,30 @@ if not facility:
      st.stop()
 else:
      pass
-#area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
+area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
 
 planned = r'PLANNED.csv'
 
 dfa = pd.read_csv(planned)
 
-# if not area:
-#      st.stop()
-# else:
-#      pass
+if not area:
+     st.stop()
+else:
+     pass
 
-activity = dfa[dfa['CLUSTER']== cluster].copy()
+activity = dfa[dfa['AREA']== area].copy()
 activities = activity['ACTIVITY'].unique()
-# activities = dfa['ACTIVITY'].unique()
 col1,col2 = st.columns([2,1])
-#if area:
-done = col1.selectbox(f'**SELECT THE ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
-#else:
-#     st.stop()
-
+if area:
+      done = col1.selectbox(f'**SELECT THE {area} ACTIVITY YOU ARE PAYING FOR**', activities, index=None)
+else:
+     st.stop()
 
 if not done:
      st.stop()
 elif done:
-     state = dfa[dfa['ACTIVITY']==done]
-     statea = state[state['CLUSTER']== cluster].copy()
+     state = activity[activity['ACTIVITY']==done]
+     statea = state[state['DISTRICT']== district].copy()
      statement = statea['STATEMENT'].unique()
      counts = statea['COUNT'].unique()
      try:
@@ -216,13 +204,18 @@ elif done:
           st.write('THIS ACTIVITY MAY NOT HAVE BEEN PLANNED FOR THIS DISTRICT')
           st.write('CONTACT YOUR TEAM LEAD FOR SUPPORT')
           st.stop()
-     #statement = statement[0]
      counts = counts[0]
      st.markdown(f'**NOTE: {statement}**')
      colt,coly,colx = st.columns([1,1,1])
-     number = colt.number_input(label=f'**{counts}**', value=None, max_value=None, min_value=None,step=1, format="%d")
+     number = colt.number_input(label=f'**{counts}**', value=None, max_value=500, min_value=1,step=1, format="%d")
      start = coly.date_input(label='**ACTIVITY START DATE**', value=None)
      end = colx.date_input(label='**END DATE**',value=None)
+     amount = colt.number_input(label='**HOW MUCH ARE YOU PAYING**', value=None, max_value=None, min_value=10000,step=1, format="%d")
+     if not number:
+          st.stop()
+     if not amount:
+          st.stop()
+
      # Get the current date and time
 current_datetime = datetime.now()
 #today = current_datetime.strftime('%y/%m/%d')
@@ -239,15 +232,9 @@ if number and start and end:
           pass
 else:
      st.stop()
-     
-money = colt.number_input(label='**HOW MUCH ARE YOU PAYING?**', value=None, max_value=None, min_value=None,step=1, format="%d")
-if not money:
-     st.stop()
-else:
-     pass
 
 st.write(f"UNIQUE ID: {st.session_state['unique_number']}")
-unique = st.session_state['unique_number']
+unique = st.session_state['unique_number'] 
 col1,col2, col3 = st.columns([1,1,2])
 col2.write('**SUMMARY**')
 
@@ -255,8 +242,8 @@ cola,colb = st.columns(2)
 cola.write(f"**UNIQUE ID: {st.session_state['unique_number']}**")
 cola.markdown(f'**DISTRICT: {district}**')
 cola.markdown(f'**FACILITY: {facility}**')
-cola.markdown(f'**AMOUNT: {money}**')
-
+cola.markdown(f'**THEMATIC AREA: {area}**')
+cola.markdown(f'**AMOUNT: {amount:,}**')
 
 colb.write(f'**ACTIVITY: {done}**')
 colb.markdown(f'**{counts}: {number}**')
@@ -269,27 +256,32 @@ cola,colb = st.columns(2)
 submit = cola.button('SUBMIT')
 current_time = time.localtime()
 week = time.strftime("%V", current_time)
-week = int(week)-39
-if submit:
-     df = pd.DataFrame([{ 'DATE OF SUBMISSION': formatted,
-                         'CLUSTER': cluster,
-                         'DISTRICT':district,
-                         'FACILITY' : facility,
-                         'ACTIVITY': done,
-                         'DONE': number,
-                         'START DATE': start,
-                         'END DATE': end,
-                         'ID' : unique,
-                         'WEEK': week
-                         }]) 
+# wek = int(week)-39
+wek = int(week) + 13
 
+#if submit:
+df = pd.DataFrame([{ 'DATE OF SUBMISSION': formatted,
+                    'CLUSTER': cluster,
+                    'DISTRICT':district,
+                    'FACILITY' : facility,
+                    'AREA' : area,
+                    'ACTIVITY': done,
+                    'DONE': number,
+                    'START DATE': start,
+                    'END DATE': end,
+                    'ID' : unique,
+                    'WEEK': wek,
+                    'AMOUNT': amount
+
+                    }]) 
 
 secrets = st.secrets["connections"]["gsheets"]
 formatted = str(formatted)
 start = str(start)
 end = str(end)
-row1 =[ formatted, cluster,district, facility, done, number, start, end, unique, week]
-row2 =[ formatted, cluster, done, money, unique]
+unique = int(unique)
+
+row1 =[ formatted, cluster,district, facility, area, done, number, start,  unique,end, wek, amount]
                
     # Prepare the credentials dictionary
 credentials_info = {
@@ -317,7 +309,7 @@ try:
     client = gspread.authorize(credentials)
         
         # Open the Google Sheet by URL
-    spreadsheetu = "https://docs.google.com/spreadsheets/d/1DJHYJIw8cKZJEZX9VQO25wuXP8ROzcxY2lqT-EvHnjU/edit?gid=1527303903"     
+    spreadsheetu = " https://docs.google.com/spreadsheets/d/1IgIltX9_2yvppb4YYoebRyyYwCqYZng62h0cRYPmAdE"     
     spreadsheet = client.open_by_url(spreadsheetu)
 except Exception as e:
         # Log the error message
@@ -325,16 +317,14 @@ except Exception as e:
     st.write(traceback.format_exc())
     st.write("COULDN'T CONNECT TO GOOGLE SHEET, TRY AGAIN")
     st.stop()
+
 if submit:
         try:
-            sheet1 = spreadsheet.worksheet("PREV")
-            sheet2 = spreadsheet.worksheet("AMOUNT")
+            sheet1 = spreadsheet.worksheet("DONE")
             sheet1.append_row(row1, value_input_option='RAW')
-            sheet2.append_row(row2, value_input_option='RAW')
             st.success('Your data above has been submitted')
-            time.sleep(2)
             st.write('RELOADING PAGE')
-            time.sleep(3)
+            time.sleep(1)
             st.markdown("""
                <meta http-equiv="refresh" content="0">
                     """, unsafe_allow_html=True)
@@ -344,47 +334,3 @@ if submit:
             st.stop()  # Stop the Streamlit app here to let the user manually retry     
 else:
      pass 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-     # try:
-     #      st. write('SUBMITING')
-     #      conn = st.connection('gsheets', type=GSheetsConnection)
-     #      exist = conn.read(worksheet= 'PREV', usecols=list(range(11)),ttl=5)
-     #      existing= exist.dropna(how='all')
-     #      updated = pd.concat([existing, df], ignore_index =True)
-     #      conn.update(worksheet = 'PREV', data = updated)         
-     #      st.success('Your data above has been submitted')
-     #      st.write('RELOADING PAGE')
-     #      time.sleep(3)
-     #      st.markdown("""
-     #      <meta http-equiv="refresh" content="0">
-     #           """, unsafe_allow_html=True)
-
-     # except:
-     #      st.write("Couldn't submit, poor network") 
-     #      st.write('Click the submit button again')
-
-
-
-
-
-
-
-
-
-
-
