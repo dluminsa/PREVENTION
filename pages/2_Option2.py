@@ -11,7 +11,7 @@ from google.oauth2.service_account import Credentials
 from oauth2client.service_account import ServiceAccountCredentials
 
 st.set_page_config(
-     page_title= 'ACTIVITY TRACKER'
+     page_title= 'PREVENTION ACTIVITY TRACKER'
 )
 
 # st.write('BEING UPDATED')
@@ -149,7 +149,7 @@ st.markdown('***ALL ENTRIES ARE REQUIRED**')
 done = ''
 district = ''
 
-theme = ['CARE', 'TB', 'PMTCT', 'CQI']
+# theme = ['CARE', 'TB', 'PMTCT', 'CQI']
 # Radio button to select a district
 
 # cluster = st.radio("**Choose a cluster:**", list(CLUSTER.keys()),horizontal=True, index=None)
@@ -177,7 +177,8 @@ else:
      pass
 
 if district:
-     area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
+     # area = st.radio('**CHOOSE A THEMATIC AREA**', theme, horizontal=True, index=None)
+     area = 'PREVENTION'
 else:
      st.stop()
 
