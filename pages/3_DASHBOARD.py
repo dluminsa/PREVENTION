@@ -31,6 +31,7 @@ try:
      conn = st.connection('gsheets', type=GSheetsConnection)     
      dfb = conn.read(worksheet='DONE', usecols=list(range(12)), ttl=5)
      dfb = dfb.dropna(how='all')
+     st.write(dfb)
      dfb['AREA'] = dfb['AREA'].astype(str)
      dfb = dfb[dfb['AREA'] == 'PREVENTION'].copy()
 except:
