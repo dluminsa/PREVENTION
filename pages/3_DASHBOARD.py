@@ -92,7 +92,7 @@ dfb = dfb2.copy()
 
 # #Filter Week, District, Facility
 # if not district and not activity:
-#     filtered_dfa = dfa
+#     dfa = dfa
 #     filtered_dfb = dfb
 # elif district and activity:
 #      #
