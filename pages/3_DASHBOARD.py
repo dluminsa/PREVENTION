@@ -75,6 +75,7 @@ else:
 #create for district
 dfa = dfa2.copy()
 dfb = dfb2.copy()
+activity = st.sidebar.multiselect('Pick a district', dfa['ACTIVITY'].unique())
 
 if not activity:
     dfa2 = dfa.copy()
