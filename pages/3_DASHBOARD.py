@@ -69,30 +69,41 @@ if not district:
     dfa2 = dfa.copy()
     dfb2 = dfb.copy()
 else:
-    dfa2 = dfa[dfa['DISTRICT'].isin(district)]
-    dfb2 = dfb[dfb['DISTRICT'].isin(district)]
+    dfa2 = dfa[dfa['DISTRICT'].isin(district)].copy()
+    dfb2 = dfb[dfb['DISTRICT'].isin(district)].copy()
 
 #create for district
+dfa = dfa2.copy()
+dfb = dfb2.copy()
+
+if not activity:
+    dfa2 = dfa.copy()
+    dfb2 = dfb.copy()
+else:
+    dfa2 = dfa[dfa['ACTIVITY'].isin(activity)].copy()
+    dfb2 = dfb[dfb['ACTIVITY'].isin(activity)].copy()
+dfa = dfa2.copy()
+dfb = dfb2.copy()
 
  
-#for facility
-activity = st.sidebar.multiselect('Choose an activity', dfa2['ACTIVITY'].unique())
+# #for facility
+# activity = st.sidebar.multiselect('Choose an activity', dfa2['ACTIVITY'].unique())
 
-#Filter Week, District, Facility
-if not district and not activity:
-    filtered_dfa = dfa
-    filtered_dfb = dfb
-elif district and activity:
-     #
-    filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district)& dfa3['ACTIVITY'].isin(activity)].copy()
-     #
-    filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district)& dfb3['ACTIVITY'].isin(activity)].copy()
-elif activity:
-    filtered_dfa = dfa3[dfa3['ACTIVITY'].isin(activity)].copy()
-    filtered_dfb = dfb3[dfb3['ACTIVITY'].isin(activity)].copy()
-else:
-    filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district) & dfa3['ACTIVITY'].isin(activity)].copy()
-    filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district) & dfb3['ACTIVITY'].isin(activity)].copy()
+# #Filter Week, District, Facility
+# if not district and not activity:
+#     filtered_dfa = dfa
+#     filtered_dfb = dfb
+# elif district and activity:
+#      #
+#     filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district)& dfa3['ACTIVITY'].isin(activity)].copy()
+#      #
+#     filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district)& dfb3['ACTIVITY'].isin(activity)].copy()
+# elif activity:
+#     filtered_dfa = dfa3[dfa3['ACTIVITY'].isin(activity)].copy()
+#     filtered_dfb = dfb3[dfb3['ACTIVITY'].isin(activity)].copy()
+# else:
+#     filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district) & dfa3['ACTIVITY'].isin(activity)].copy()
+#     filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district) & dfb3['ACTIVITY'].isin(activity)].copy()
 #################################################################################################
 cols,cold = st.columns(2)
 dist = '.'.join(filtered_dfb['DISTRICT']. unique())
