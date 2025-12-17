@@ -233,7 +233,7 @@ for activity in activities:
                          spentc =  dfspentc['AMOUNT'].sum()
                          balc = planc - spentc
                          if balc <0:
-                             st.warning('**ERROR**')
+                             st.warning('**ERROR, A DISTRICT SPENT MORE THAN PLANNED**')
                     except:
                          spentc = 0
                          planc = 0
