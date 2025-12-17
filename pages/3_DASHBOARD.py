@@ -93,21 +93,21 @@ dfb = dfb2.copy()
 # #Filter Week, District, Facility
 # if not district and not activity:
 #     dfa = dfa
-#     filtered_dfb = dfb
+#     dfb = dfb
 # elif district and activity:
 #      #
-#     filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district)& dfa3['ACTIVITY'].isin(activity)].copy()
+#     dfa = dfa3[dfa3['DISTRICT'].isin(district)& dfa3['ACTIVITY'].isin(activity)].copy()
 #      #
-#     filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district)& dfb3['ACTIVITY'].isin(activity)].copy()
+#     dfb = dfb3[dfb3['DISTRICT'].isin(district)& dfb3['ACTIVITY'].isin(activity)].copy()
 # elif activity:
-#     filtered_dfa = dfa3[dfa3['ACTIVITY'].isin(activity)].copy()
-#     filtered_dfb = dfb3[dfb3['ACTIVITY'].isin(activity)].copy()
+#     dfa = dfa3[dfa3['ACTIVITY'].isin(activity)].copy()
+#     dfb = dfb3[dfb3['ACTIVITY'].isin(activity)].copy()
 # else:
-#     filtered_dfa = dfa3[dfa3['DISTRICT'].isin(district) & dfa3['ACTIVITY'].isin(activity)].copy()
-#     filtered_dfb = dfb3[dfb3['DISTRICT'].isin(district) & dfb3['ACTIVITY'].isin(activity)].copy()
+#     dfa = dfa3[dfa3['DISTRICT'].isin(district) & dfa3['ACTIVITY'].isin(activity)].copy()
+#     dfb = dfb3[dfb3['DISTRICT'].isin(district) & dfb3['ACTIVITY'].isin(activity)].copy()
 #################################################################################################
 cols,cold = st.columns(2)
-dist = '.'.join(filtered_dfb['DISTRICT']. unique())
+dist = '.'.join(dfb['DISTRICT']. unique())
 
 if not district:
     pass
@@ -116,7 +116,7 @@ elif len(dist) == 0:
 else:
     cols.write(f'**You are viewing data for: {dist}**')
 
-act = '.'.join(filtered_dfb['ACTIVITY']. unique())
+act = '.'.join(dfb['ACTIVITY']. unique())
 
 if not activity:
     st.write(f'**No specific activity has been chosen**')
@@ -125,8 +125,8 @@ elif len(act) == 0:
 else:
     st.write(f'**ACTIVITIES INCLUDED ARE: {act}**')
 
-plan = filtered_dfa['PLANNED'].sum()
-conducted = filtered_dfb['DONE'].sum()
+plan = dfa['PLANNED'].sum()
+conducted = dfb['DONE'].sum()
 
 notdone = plan - conducted
 if plan ==0:
@@ -151,12 +151,12 @@ col1,col2,col3,col4,col5 = st.columns(5, gap='large')
 # with col5:
 #     st.metric(label='**NOT DONE**', value=f'{notdone:,.0f}')
 ##################################################################################
-filtered_dfa['AMOUNT'] = pd.to_numeric(filtered_dfa['AMOUNT'], errors='coerce')
-filt = filtered_dfa[filtered_dfa['AMOUNT']>0].copy()
+dfa['AMOUNT'] = pd.to_numeric(dfa['AMOUNT'], errors='coerce')
+filt = dfa[dfa['AMOUNT']>0].copy()
 dfplan = filt.copy()
 plana = filt['AMOUNT'].sum()
-conducteda = filtered_dfb['AMOUNT'].sum()
-dfspenta = filtered_dfb.copy()
+conducteda = dfb['AMOUNT'].sum()
+dfspenta = dfb.copy()
 notdonea = plana - conducteda
 pers = int((conducteda/plana)*100)
      
@@ -194,7 +194,7 @@ fig.update_layout(title_text='DONE vs NOT DONE', title_x=0.2)
 #LINE GRAPH
 st.divider()
 
-grouped = filtered_dfb.groupby('WEEK').sum(numeric_only=True).reset_index()
+grouped = dfb.groupby('WEEK').sum(numeric_only=True).reset_index()
 fig2 = px.line(grouped, x='WEEK', y='DONE', title='WEEKLY TRENDS',
                markers=True)
 
@@ -205,8 +205,8 @@ fig2.update_layout(xaxis_title='WEEK', yaxis_title='TOTAL DONE',
                      yaxis=dict(showline=True, linewidth=1, linecolor='black'))  # Show y-axis line)
 
 st.plotly_chart(fig2, width = 'stretch')
-# dists = filtered_dfb['DISTRICT'].unique()
-# facys = filtered_dfb['FACILITY'].unique()
+# dists = dfb['DISTRICT'].unique()
+# facys = dfb['FACILITY'].unique()
 dfplan['AMOUNT'] = pd.to_numeric(dfplan['AMOUNT'], errors='coerce')
 dfplana = dfplan[dfplan['AMOUNT']>0].copy()
 
@@ -251,7 +251,7 @@ for activity in activities:
                             
                           
 
-filtered_dfc= filtered_dfb[['CLUSTER','DISTRICT','FACILITY' ,'AREA','ACTIVITY', 'DONE', 'WEEK', 'AMOUNT','ID','DATE OF SUBMISSION']]
+filtered_dfc= dfb[['CLUSTER','DISTRICT','FACILITY' ,'AREA','ACTIVITY', 'DONE', 'WEEK', 'AMOUNT','ID','DATE OF SUBMISSION']]
 with st.expander(f'**CLICK HERE TO SEE FULL DATA SET**'):
     st.dataframe(filtered_dfc.reset_index(drop=True))
     csv_data = filtered_dfc.to_csv(index=False)
